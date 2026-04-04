@@ -69,19 +69,6 @@ func NewCursorService(cfg *config.Config) *CursorService {
 		logrus.Fatalf("failed to read jscode/env.js: %v", err)
 	}
 
-	// Auto login if email/password configured
-	if cfg.CursorEmail != "" && cfg.CursorPassword != "" {
-		logrus.Info("Auto-login mode: fetching cookies via headless browser...")
-		ctx := context.Background()
-		cookie, err := AutoLoginCursor(ctx, cfg)
-		if err != nil {
-			logrus.WithError(err).Warn("Auto login failed, falling back to manual cookie or random token")
-		} else {
-			cfg.CursorCookie = cookie
-			logrus.Info("Auto login successful, using obtained cookies")
-		}
-	}
-
 	jar, err := cookiejar.New(nil)
 	if err != nil {
 		logrus.Warnf("failed to create cookie jar: %v", err)
