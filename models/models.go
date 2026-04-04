@@ -38,6 +38,30 @@ type ChatCompletionRequest struct {
 	User        string          `json:"user,omitempty"`
 	Tools       []Tool          `json:"tools,omitempty"`
 	ToolChoice  json.RawMessage `json:"tool_choice,omitempty"`
+
+	// 以下参数用于控制生成行为（部分由上层处理或注入系统提示）
+	PresencePenalty   *float64        `json:"presence_penalty,omitempty"`
+	FrequencyPenalty  *float64        `json:"frequency_penalty,omitempty"`
+	ResponseFormat    *ResponseFormat `json:"response_format,omitempty"`
+	Seed              *int            `json:"seed,omitempty"`
+	LogitBias         map[string]int  `json:"logit_bias,omitempty"`
+	LogProbs          bool            `json:"logprobs,omitempty"`
+	TopLogProbs       *int            `json:"top_logprobs,omitempty"`
+	N                 int             `json:"n,omitempty"`
+	ParallelToolCalls bool            `json:"parallel_tool_calls,omitempty"`
+}
+
+// ResponseFormat 响应格式（JSON mode 等）
+type ResponseFormat struct {
+	Type       string      `json:"type"`
+	JSONSchema *JSONSchema `json:"json_schema,omitempty"`
+}
+
+// JSONSchema JSON 响应模式的结构定义
+type JSONSchema struct {
+	Name   string                 `json:"name"`
+	Schema map[string]interface{} `json:"schema,omitempty"`
+	Strict *bool                  `json:"strict,omitempty"`
 }
 
 // Message 消息结构

@@ -517,6 +517,15 @@ KILO_TOOL_STRICT=true
                         <tr><td><code>user</code></td><td>string</td><td>❌</td><td>终端用户标识符</td></tr>
                         <tr><td><code>tools</code></td><td>array</td><td>❌</td><td>工具定义列表，格式与 OpenAI 一致</td></tr>
                         <tr><td><code>tool_choice</code></td><td>string|object</td><td>❌</td><td><code>"auto"</code> / <code>"none"</code> / <code>"required"</code> / 指定函数对象</td></tr>
+                        <tr><td><code>presence_penalty</code></td><td>number</td><td>❌</td><td>存在惩罚，-2.0 ~ 2.0，鼓励谈论新话题</td></tr>
+                        <tr><td><code>frequency_penalty</code></td><td>number</td><td>❌</td><td>频率惩罚，-2.0 ~ 2.0，降低重复内容</td></tr>
+                        <tr><td><code>response_format</code></td><td>object</td><td>❌</td><td>响应格式，支持 <code>{"type":"json_object"}</code> 强制 JSON 输出</td></tr>
+                        <tr><td><code>seed</code></td><td>integer</td><td>❌</td><td>随机种子，相同 seed + 相同输入可复现结果</td></tr>
+                        <tr><td><code>logit_bias</code></td><td>object</td><td>❌</td><td>Token 级偏差映射，token_id → bias (-100 ~ 100)</td></tr>
+                        <tr><td><code>logprobs</code></td><td>boolean</td><td>❌</td><td>是否返回 token 概率</td></tr>
+                        <tr><td><code>top_logprobs</code></td><td>integer</td><td>❌</td><td>返回 top K 个 token 的概率</td></tr>
+                        <tr><td><code>n</code></td><td>integer</td><td>❌</td><td>生成几份回复，默认 1</td></tr>
+                        <tr><td><code>parallel_tool_calls</code></td><td>boolean</td><td>❌</td><td>是否允许并行调用多个工具，默认 true</td></tr>
                     </table>
 
                     <h4 style="margin-top: 15px;">基础示例（非流式）</h4>
